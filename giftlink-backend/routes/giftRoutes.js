@@ -41,6 +41,58 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+const express = require("express");
+const router = express.Router();
+const { connectToDatabase } = require("../models/db");
+
+router.get("/api/gifts", async (req, res) => {
+    try {
+        // Task 1: Connect to MongoDB and store connection to db constant
+        const db = await connectToDatabase();
+
+        // Task 2: Use the collection() method to retrieve the gift collection
+        const giftCollection = db.collection("gift");
+
+        // Task 3: Fetch all gifts using the collection.find method
+        const gifts = await giftCollection.find({}).toArray();
+
+        // Task 4: Return the gifts using the res.json method
+        res.json(gifts);
+    } catch (error) {
+        console.error("Error retrieving gifts:", error);
+        res.status(500).json({ error: "Failed to retrieve gifts" });
+    }
+});
+
+router.get("/api/gifts/:id", async (req, res) => {
+    try {
+        // Extract the ID from the route parameters
+        const giftId = req.params.id;
+
+        // Task 1: Connect to MongoDB and store connection to db constant
+        const db = await connectToDatabase();
+
+        // Task 2: Use the collection() method to retrieve the gift collection
+        const giftCollection = db.collection("gift");
+
+        // Task 3: Find a specific gift by ID using the collection.findOne method
+        const gift = await giftCollection.findOne({ _id: new ObjectId(giftId) });
+
+        if (!gift) {
+            return res.status(404).json({ error: "Gift not found" });
+        }
+
+        // Return the found gift
+        res.json(gift);
+    } catch (error) {
+        console.error("Error retrieving gift by ID:", error);
+        res.status(500).json({ error: "Failed to retrieve gift" });
+    }
+});
+
+module.exports = router;
+
+
 
 
 // Add a new gift
