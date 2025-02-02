@@ -1,0 +1,17 @@
+CI/CD with GitHub Actions
+Estimated time needed: 60 minutes
+
+Your team is growing! Management has decided to hire front-end and back-end engineers to ensure features on the roadmap are developed in time for future releases. However, this means that multiple engineers will need to work in parallel on the repository. You must ensure the code pushed to the main branch meets the team coding style and is free of syntax errors.
+
+So far, you have created the back end, created the front end, integrated the front end and back end, and pushed all the code to your GitHub repository. Go to your GitHub repository to ensure all your code is present.
+
+The code in your repository should be error-free, follow the standardized coding norms, and adhere to best practices. You may have noticed some suggestions that come up with colored squiggly lines while using the Cloud IDE. These are the IDE's built-in linters in action.
+
+Linting automates the code review process by providing feedback on code quality and adherence to coding standards before being merged into the codebase.
+
+Overall, linting is an essential tool for improving code quality, maintaining consistency, and preventing common coding errors and security vulnerabilities in software development projects.
+
+In this lab, you will add linting to your repository using a GitHub workflow containing GitHub Actions. Your linting will automatically check for errors whenever a developer creates a pull request or whenever a branch is merged into the default main branch.
+
+GitHub Workflow
+Examine the workflow template provided below.
